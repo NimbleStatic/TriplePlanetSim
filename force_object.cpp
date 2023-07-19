@@ -55,9 +55,9 @@ void Force_Object::add_velocity(Velocity value)
 
 void Force_Object::move_in_time(Time value)
 {
-    curr_positon.x = curr_velocity.x*value.time + ((curr_forces.x/mass)*std::pow(value.time, 2))/2;
-    curr_positon.y = curr_velocity.y*value.time + ((curr_forces.y/mass)*std::pow(value.time, 2))/2;
-    curr_positon.z = curr_velocity.z*value.time + ((curr_forces.z/mass)*std::pow(value.time, 2))/2;
+    curr_positon.x += curr_velocity.x*value.time + ((curr_forces.x/mass)*std::pow(value.time, 2))/2;
+    curr_positon.y += curr_velocity.y*value.time + ((curr_forces.y/mass)*std::pow(value.time, 2))/2;
+    curr_positon.z += curr_velocity.z*value.time + ((curr_forces.z/mass)*std::pow(value.time, 2))/2;
 
     curr_velocity.x = curr_velocity.x + ((curr_forces.x/mass)*value.time);
     curr_velocity.y = curr_velocity.y + ((curr_forces.y/mass)*value.time);
