@@ -10,6 +10,8 @@ struct Position{
     long double x;
     long double y;
     long double z;
+
+    long double get_distance_from_pos(Position &value) const;
 };
 
 #endif
