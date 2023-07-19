@@ -11,6 +11,7 @@ class Force_Object{
         Position curr_positon;
         Force curr_forces;
         Velocity curr_velocity;
+        Time curr_time;
         std::vector<std::tuple<Position,Time>> pos_history;
     public:
         Force_Object(long double mass, long double size, Position position);
@@ -26,6 +27,7 @@ class Force_Object{
         long double get_mass() const;
         long double get_size() const;
         Position get_current_pos() const;
+        Velocity get_current_velocity() const;
         std::vector<std::tuple<Position,Time>> get_pos_history() const;
 
 };
