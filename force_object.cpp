@@ -120,6 +120,10 @@ Velocity Force_Object::get_current_velocity() const
     return curr_velocity;
 }
 
+Force Force_Object::get_current_force() const{
+    return curr_forces;
+}
+
 Time Force_Object::get_current_time() const
 {
     return curr_time;

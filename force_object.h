@@ -32,6 +32,7 @@ class Force_Object{
         long double get_size() const;
         Position get_current_pos() const;
         Velocity get_current_velocity() const;
+        Force get_current_force() const;
         Time get_current_time() const;
         std::vector<std::tuple<Position,Time>> get_pos_history() const;
         unsigned int get_object_id() const;
