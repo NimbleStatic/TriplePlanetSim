@@ -3,14 +3,45 @@
 #include "structs.h"
 #include"vector"
 #include"tuple"
+#include <ctime>
+#include"iostream"
+#include <random>
+#include <chrono>
 
-Force_Object::Force_Object(long double mass, long double size, Position position):mass(mass), size(size), curr_positon(position)
+unsigned int Force_Object::generate_id() const
 {
-    curr_forces = {0,0,0};
-    curr_velocity = {0,0,0};
-    curr_time = {0};
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::mt19937 gen(seed);
+
+    std::uniform_int_distribution<int> dis(0, unsigned (seed/35));
+    int random_num = dis(gen);
+
+    return seed + random_num;
+}
+
+Force_Object::Force_Object(long double mass, long double size,
+                           Position position) : mass(mass), size(size),
+                                                curr_positon(position),
+                                                curr_forces({0, 0, 0}),
+                                                curr_velocity({0, 0, 0}),
+                                                curr_time({0})
+{
+    id = this->generate_id();
     pos_history.push_back(std::tuple(position,Time {0}));
 
+
+}
+
+Force_Object::Force_Object(long double mass, long double size,
+                           Position position, unsigned int id):
+                           mass(mass), size(size),
+                           curr_positon(position),
+                           curr_forces({0,0,0}),
+                           curr_velocity({0,0,0}),
+                           curr_time({0}),
+                           id(id)
+{
+    pos_history.push_back(std::tuple(position,Time {0}));
 }
 
 void Force_Object::set_force(long double Fx, long double Fy, long double Fz)
@@ -89,7 +120,16 @@ Velocity Force_Object::get_current_velocity() const
     return curr_velocity;
 }
 
+Time Force_Object::get_current_time() const
+{
+    return curr_time;
+}
+
 std::vector<std::tuple<Position, Time>> Force_Object::get_pos_history() const
 {
     return pos_history;
+}
+
+unsigned Force_Object::get_object_id() const{
+    return id;
 }
